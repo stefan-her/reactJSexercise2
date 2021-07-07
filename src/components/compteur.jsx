@@ -6,19 +6,15 @@ const Compteur = (props) => {
     const inc = props.inc;
 
     const [v, setCount] = useState(0);
-    const increment = (() => {
-        setCount(v + inc);
-        
-    });
-
+    const increment = () => { setCount(prev => prev + inc); }; ///<- bonne pratique de la lambda
+    const reset = () => { setCount(0); };
 
     return (
         <>
             <h1>Compteur</h1>
             <div>{v}</div>
             <button onClick={increment}>inc</button>
-
-            <button>reset</button>
+            { (v > 0) && <button onClick={reset}>reset</button> }
         </>
     );
 }
